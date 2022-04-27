@@ -1,4 +1,4 @@
-stereo_dfm_27uro135_ml:
+stereo_dfm27uro135ml:
   serials:
     cam0: "26810384"
     cam1: "11910662"
@@ -29,10 +29,10 @@ stereo_dfm_27uro135_ml:
 
   formats:
     name: "video/x-raw"
-    format: "RGB"
+    format: "GRAY8"
     width: 1280
     height: 960
-    fps: 40
+    fps: 30
 
 rosEncodingType:
   grbg: "8UC3"

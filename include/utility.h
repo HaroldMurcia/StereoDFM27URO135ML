@@ -26,10 +26,10 @@ class ParamServer{
 public:
     
     YAML::Node node = YAML::LoadFile("src/StereoDFM27URO135ML/config/params.yaml");
-    YAML::Node stereo_dfm_27uro135_ml = node["stereo_dfm27uro135ml"];
+    YAML::Node stereo_dfm27uro135ml = node["stereo_dfm27uro135ml"];
 
-    YAML::Node properties = stereo_dfm_27uro135_ml["properties"];
-    YAML::Node formats = stereo_dfm_27uro135_ml["formats"];
+    YAML::Node properties = stereo_dfm27uro135ml["properties"];
+    YAML::Node formats = stereo_dfm27uro135ml["formats"];
 
     string serial_cam0;
     string serial_cam1;
@@ -39,7 +39,7 @@ public:
     int32_t height;
 
     ParamServer(){
-        YAML::Node serials = stereo_dfm_27uro135_ml["serials"];
+        YAML::Node serials = stereo_dfm27uro135ml["serials"];
         serial_cam0 = serials["cam0"].as<std::string>();
         serial_cam1 = serials["cam1"].as<std::string>();
         width = formats["width"].as<int32_t>();
@@ -91,7 +91,7 @@ public:
     }
 
     void print_params(){
-        cout << "\n" <<stereo_dfm_27uro135_ml << "\n" << endl;
+        cout << "\n" <<stereo_dfm27uro135ml << "\n" << endl;
     }
 };
 #endif
