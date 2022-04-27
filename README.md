@@ -47,7 +47,7 @@ $ sudo make install
 Clone este repositorio en ~/catkin_ws/src
 
 ```console
-$ git clone https://github.com/JohanAvilaU17/Stereo_DFM_27URO135_ML.git
+$ git clone https://github.com/JohanAvilaU17/StereoDFM27URO135ML.git
 $ cd ..
 $ catkin_make
 ```
