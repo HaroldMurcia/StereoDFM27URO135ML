@@ -26,7 +26,7 @@ class ParamServer{
 public:
     
     YAML::Node node = YAML::LoadFile("src/Stereo_DFM_27URO135_ML/config/params.yaml");
-    YAML::Node stereo_dfm_27uro135_ml = node["stereo_dfm_27uro135_ml"];
+    YAML::Node stereo_dfm_27uro135_ml = node["stereo_dfm27uro135ml"];
 
     YAML::Node properties = stereo_dfm_27uro135_ml["properties"];
     YAML::Node formats = stereo_dfm_27uro135_ml["formats"];
