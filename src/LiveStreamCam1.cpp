@@ -1,5 +1,31 @@
 #include "utility.h"
 
+gboolean block_until_playing(GstElement *pipeline)
+{
+    while (TRUE)
+    {
+        GstState state;
+        GstState pending;
+
+        // wait 0.1 seconds for something to happen
+        GstStateChangeReturn ret = gst_element_get_state(pipeline, &state, &pending, 100000000);
+
+        if (ret == GST_STATE_CHANGE_SUCCESS)
+        {
+            return TRUE;
+        }
+        else if (ret == GST_STATE_CHANGE_FAILURE)
+        {
+            printf("Failed to change state %s %s %s\n",
+                   gst_element_state_change_return_get_name(ret),
+                   gst_element_state_get_name(state),
+                   gst_element_state_get_name(pending));
+
+            return FALSE;
+        }
+    }
+}
+
 int main (int argc, char *argv[]){
 
     gst_debug_set_default_threshold(GST_LEVEL_WARNING);
@@ -56,7 +82,6 @@ int main (int argc, char *argv[]){
     param_server.set_property(cam1,"whitebalance-green","int");
     param_server.set_property(cam1,"whitebalance-module-enabled","boolean");
     param_server.set_property(cam1,"whitebalance-red","int");
-    gst_object_unref(cam1);
 
     param_server.set_format(capsfilter);
     gst_object_unref(capsfilter);
@@ -65,6 +90,29 @@ int main (int argc, char *argv[]){
     param_server.print_params();
 
     gst_element_set_state(pipeline, GST_STATE_PLAYING);
+
+    if (!block_until_playing(pipeline))
+    {
+        printf("Unable to start pipeline. \n");
+    }
+
+    param_server.set_property(cam1,"Brightness Reference","int");
+
+    param_server.set_property(cam1,"Exposure Auto","boolean");
+    param_server.set_property(cam1,"Exposure Min","int");
+    param_server.set_property(cam1,"Exposure Max","int");
+    param_server.set_property(cam1,"Exposure Time (us)","int");
+
+    param_server.set_property(cam1,"Gain Auto","boolean");
+    param_server.set_property(cam1,"Gain Min","double");
+    param_server.set_property(cam1,"Gain Max","double");
+    param_server.set_property(cam1,"Gain","int");
+
+    param_server.set_property(cam1,"Exposure ROI Left","int");
+    param_server.set_property(cam1,"Exposure ROI Width","int");
+    param_server.set_property(cam1,"Exposure ROI Top","int");
+    param_server.set_property(cam1,"Exposure ROI Height","int");
+    gst_object_unref(cam1); 
 
     printf("Press enter to stop the stream.\n");
     getchar();

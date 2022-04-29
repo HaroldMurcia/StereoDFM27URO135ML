@@ -287,20 +287,22 @@ int main (int argc, char *argv[]){
             }
             GstElement* camera = gst_bin_get_by_name(GST_BIN(pipeline), "camera");
 
-            printf("Properties before state PLAYING:\n");
-            list_properties(camera);
-            printf("\n");
+            // printf("Properties before state PLAYING:\n");
+            // list_properties(camera);
+            // printf("\n");
+
             gst_element_set_state(pipeline, GST_STATE_PLAYING);
             
             if (!block_until_playing(pipeline)){
                 printf("Unable to start pipeline. \n");
             }
             
-            // printf("Properties during state PLAYING:\n");
-            // list_properties(camera);
-            // printf("\n");
+            printf("Properties during state PLAYING:\n");
+            list_properties(camera);
+            printf("\n");
 
             gst_element_set_state(pipeline, GST_STATE_NULL);
+            
             gst_object_unref(camera);
             gst_object_unref(pipeline);
         }

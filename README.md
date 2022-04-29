@@ -125,19 +125,29 @@ Para realizar cambios en las propiedades o en el formato de las cámaras, modifi
   -> Model: DFM 27UR0135-ML Serial: 26810384 Identifier: /dev/video0 Type: v4l2
 
   Properties before state PLAYING:
-
-  whitebalance-red(integer) min: 0 max: 255 step: 1 value: 0 default: 64  grouping Color Whitebalance
-  whitebalance-green(integer) min: 0 max: 255 step: 1 value: 0 default: 64  grouping Color Whitebalance
-  whitebalance-blue(integer) min: 0 max: 255 step: 1 value: 0 default: 64  grouping Color Whitebalance
+  whitebalance-red(integer) min: 0 max: 255 step: 1 value: 64 default: 64  grouping Color Whitebalance
+  whitebalance-green(integer) min: 0 max: 255 step: 1 value: 64 default: 64  grouping Color Whitebalance
+  whitebalance-blue(integer) min: 0 max: 255 step: 1 value: 64 default: 64  grouping Color Whitebalance
   whitebalance-auto(boolean) value: true default: true  grouping Color Whitebalance
   whitebalance-module-enabled(boolean) value: true default: true  grouping Color Whitebalance
   camera-whitebalance(boolean) value: false default: false  grouping Color Whitebalance
+  Brightness Reference(integer) min: 0 max: 255 step: 1 value: 128 default: 128  grouping Exposure Exposure
+  Exposure Auto(boolean) value: true default: true  grouping Exposure Exposure
+  Exposure Min(integer) min: 100 max: 2147483647 step: 1 value: 100 default: 100  grouping Exposure Exposure
+  Exposure Max(integer) min: 100 max: 2147483647 step: 1 value: 16666 default: 2147483647  grouping Exposure Exposure
+  Gain Auto(boolean) value: true default: true  grouping Exposure Gain
+  Gain Min(double) min: 48.000000 max: 2047.000000 step: 1.000000 value: 48.000000 default: 48.000000  grouping Exposure Gain
+  Gain Max(double) min: 48.000000 max: 2047.000000 step: 1.000000 value: 2047.000000 default: 2047.000000  grouping Exposure Gain
+  Exposure ROI Left(integer) min: 0 max: 1271 step: 1 value: 0 default: 0  grouping Exposure ROI
+  Exposure ROI Width(integer) min: 8 max: 1280 step: 1 value: 1280 default: 1280  grouping Exposure ROI
+  Exposure ROI Top(integer) min: 0 max: 951 step: 1 value: 0 default: 0  grouping Exposure ROI
+  Exposure ROI Height(integer) min: 8 max: 960 step: 1 value: 960 default: 960  grouping Exposure ROI
   Brightness(integer) min: 0 max: 4095 step: 1 value: 16 default: 16  grouping Exposure Brightness
-  Gain(integer) min: 48 max: 2047 step: 1 value: 111 default: 48  grouping Exposure Gain
-  Exposure Time (us)(integer) min: 100 max: 1000000 step: 1 value: 25000 default: 33333  grouping Exposure Exposure
+  Gain(integer) min: 48 max: 2047 step: 1 value: 32 default: 48  grouping Exposure Gain
+  Exposure Time (us)(integer) min: 100 max: 1000000 step: 1 value: 1000 default: 33333  grouping Exposure Exposure
   Gain (dB/100)(integer) min: 0 max: 1629 step: 1 value: 0 default: 0  grouping Unknown INVALID_PORPERTY
   Trigger Mode(boolean) value: false default: false  grouping Special Trigger Mode
-  Trigger Delay (us)(integer) min: 0 max: 10000000 step: 10 value: 0 default: 0  grouping Special Trigger Mode
+  Trigger Delay (us)(integer) min: 0 max: 10000000 step: 10 value: 150 default: 0  grouping Special Trigger Mode
   Strobe Enable(boolean) value: false default: false  grouping Special Strobe Enable
   Strobe Polarity(boolean) value: false default: false  grouping Special Strobe Enable
   Strobe Exposure(boolean) value: false default: false  grouping Special Strobe Enable

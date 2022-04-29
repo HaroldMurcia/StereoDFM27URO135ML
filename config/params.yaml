@@ -4,12 +4,8 @@ stereo_dfm27uro135ml:
     cam1: "11910662"
 
   properties:
-    Brightness: 16
-    Exposure Time (us): 33333
     GPIn: 0
     GPOut: 0
-    Gain: 48
-    Gain (dB/100): 0
     Offset Auto Center: true
     Offset X: 0
     Offset Y: 0
@@ -26,6 +22,21 @@ stereo_dfm27uro135ml:
     whitebalance-green: 64
     whitebalance-module-enabled: true
     whitebalance-red: 64
+    Brightness: 16
+    Brightness Reference: 128
+    Exposure Time (us): 33333
+    Exposure Auto: true
+    Exposure Min: 100
+    Exposure Max: 33333
+    Gain: 48
+    Gain (dB/100): 0
+    Gain Auto: true
+    Gain Min: 48.0
+    Gain Max: 2047.0
+    Exposure ROI Left: 0
+    Exposure ROI Width: 1280
+    Exposure ROI Top: 0
+    Exposure ROI Height: 960
 
   formats:
     name: "video/x-raw"

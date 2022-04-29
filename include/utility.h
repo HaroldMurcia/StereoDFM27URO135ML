@@ -62,6 +62,11 @@ public:
             g_value_set_boolean(&property,properties[name].as<bool>());
             tcam_prop_set_tcam_property(TCAM_PROP(camera), name, &property);
         }
+        else if(strcmp(type, "double") == 0){   
+            g_value_init(&property,G_TYPE_DOUBLE);
+            g_value_set_double(&property,properties[name].as<double>());
+            tcam_prop_set_tcam_property(TCAM_PROP(camera), name, &property);
+        }
         else {
             printf("type no valido: %s",type);
         }

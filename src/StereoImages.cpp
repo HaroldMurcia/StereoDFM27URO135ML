@@ -85,12 +85,10 @@ public:
             "stereo_dfm27uro135ml/cam1/image_raw",1);
     }
 
-    void setting_camera(){
+    void setting_camera_before_PLAYING(){
         this->param_server.set_property(this->cam0,"Brightness","int");
-        this->param_server.set_property(this->cam0,"Exposure Time (us)","int");
         this->param_server.set_property(this->cam0,"GPIn","int");
         this->param_server.set_property(this->cam0,"GPOut","int");
-        this->param_server.set_property(this->cam0,"Gain","int");
         this->param_server.set_property(this->cam0,"Gain (dB/100)","int");
         this->param_server.set_property(this->cam0,"Offset Auto Center","boolean");
         this->param_server.set_property(this->cam0,"Offset X","int");
@@ -110,10 +108,8 @@ public:
         this->param_server.set_property(this->cam0,"whitebalance-red","int");
 
         this->param_server.set_property(this->cam1,"Brightness","int");
-        this->param_server.set_property(this->cam1,"Exposure Time (us)","int");
         this->param_server.set_property(this->cam1,"GPIn","int");
         this->param_server.set_property(this->cam1,"GPOut","int");
-        this->param_server.set_property(this->cam1,"Gain","int");
         this->param_server.set_property(this->cam1,"Gain (dB/100)","int");
         this->param_server.set_property(this->cam1,"Offset Auto Center","boolean");
         this->param_server.set_property(this->cam1,"Offset X","int");
@@ -131,9 +127,39 @@ public:
         this->param_server.set_property(this->cam1,"whitebalance-green","int");
         this->param_server.set_property(this->cam1,"whitebalance-module-enabled","boolean");
         this->param_server.set_property(this->cam1,"whitebalance-red","int");
+    }
 
-        gst_object_unref(this->cam0);
-        gst_object_unref(this->cam1);
+    void setting_camera_during_PLAYING(){
+        this->param_server.set_property(this->cam0,"Brightness Reference","int");
+        this->param_server.set_property(this->cam0,"Exposure Auto","boolean");
+        this->param_server.set_property(this->cam0,"Exposure Min","int");
+        this->param_server.set_property(this->cam0,"Exposure Max","int");
+        this->param_server.set_property(this->cam0,"Exposure Time (us)","int");
+        this->param_server.set_property(this->cam0,"Gain Auto","boolean");
+        this->param_server.set_property(this->cam0,"Gain Min","double");
+        this->param_server.set_property(this->cam0,"Gain Max","double");
+        this->param_server.set_property(this->cam0,"Gain","int");
+        this->param_server.set_property(this->cam0,"Exposure ROI Left","int");
+        this->param_server.set_property(this->cam0,"Exposure ROI Width","int");
+        this->param_server.set_property(this->cam0,"Exposure ROI Top","int");
+        this->param_server.set_property(this->cam0,"Exposure ROI Height","int");
+
+        this->param_server.set_property(this->cam1,"Brightness Reference","int");
+        this->param_server.set_property(this->cam1,"Exposure Auto","boolean");
+        this->param_server.set_property(this->cam1,"Exposure Min","int");
+        this->param_server.set_property(this->cam1,"Exposure Max","int");
+        this->param_server.set_property(this->cam1,"Exposure Time (us)","int");
+        this->param_server.set_property(this->cam1,"Gain Auto","boolean");
+        this->param_server.set_property(this->cam1,"Gain Min","double");
+        this->param_server.set_property(this->cam1,"Gain Max","double");
+        this->param_server.set_property(this->cam1,"Gain","int");
+        this->param_server.set_property(this->cam1,"Exposure ROI Left","int");
+        this->param_server.set_property(this->cam1,"Exposure ROI Width","int");
+        this->param_server.set_property(this->cam1,"Exposure ROI Top","int");
+        this->param_server.set_property(this->cam1,"Exposure ROI Height","int");
+
+        gst_object_unref(this->cam0); 
+        gst_object_unref(this->cam1); 
     }
 
     void setting_capsfilter(){
@@ -156,6 +182,32 @@ public:
         g_object_set(G_OBJECT(this->appsink1), "max-buffers", 4, NULL);
     }
 };
+
+gboolean block_until_playing(GstElement *pipeline)
+{
+    while (TRUE)
+    {
+        GstState state;
+        GstState pending;
+
+        // wait 0.1 seconds for something to happen
+        GstStateChangeReturn ret = gst_element_get_state(pipeline, &state, &pending, 100000000);
+
+        if (ret == GST_STATE_CHANGE_SUCCESS)
+        {
+            return TRUE;
+        }
+        else if (ret == GST_STATE_CHANGE_FAILURE)
+        {
+            printf("Failed to change state %s %s %s\n",
+                   gst_element_state_change_return_get_name(ret),
+                   gst_element_state_get_name(state),
+                   gst_element_state_get_name(pending));
+
+            return FALSE;
+        }
+    }
+}
 
 static GstFlowReturn publish_img0(GstElement* appsink,StereoDFM* stereo_DFM){
     GstSample *sample = NULL;
@@ -204,7 +256,7 @@ int main (int argc, char *argv[]){
 
     StereoDFM stereo_DFM;
     stereo_DFM.setting_publisher();
-    stereo_DFM.setting_camera();
+    stereo_DFM.setting_camera_before_PLAYING();
     stereo_DFM.setting_capsfilter();
     stereo_DFM.setting_appsink();
 
@@ -218,6 +270,16 @@ int main (int argc, char *argv[]){
 
     gst_element_set_state(stereo_DFM.pipeline0, GST_STATE_PLAYING);
     gst_element_set_state(stereo_DFM.pipeline1, GST_STATE_PLAYING);
+    
+    if (!block_until_playing(stereo_DFM.pipeline0)){
+        printf("Unable to start pipeline0. \n");
+    }
+
+    if (!block_until_playing(stereo_DFM.pipeline1)){
+        printf("Unable to start pipelin1. \n");
+    }
+
+    stereo_DFM.setting_camera_during_PLAYING();
     
     ROS_INFO_STREAM("Press enter to stop.");
     getchar();
