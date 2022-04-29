@@ -30,7 +30,7 @@ stereo_dfm27uro135ml:
     Exposure Max: 33333
     Gain: 48
     Gain (dB/100): 0
-    Gain Auto: true
+    Gain Auto: false
     Gain Min: 48.0
     Gain Max: 2047.0
     Exposure ROI Left: 0
