@@ -23,7 +23,7 @@ stereo_dfm27uro135ml:
     whitebalance-module-enabled: true
     whitebalance-red: 64
     Brightness: 16
-    Brightness Reference: 128
+    Brightness Reference: 60
     Exposure Time (us): 33333
     Exposure Auto: true
     Exposure Min: 100
