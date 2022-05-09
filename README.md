@@ -38,9 +38,8 @@ $ cd tiscamera
 $ ./scripts/dependency-manager install
 $ mkdir build
 $ cd build
-$ cmake -DBUILD_ARAVIS=ON ..
-$ cmake -BUILD_TOOLS=ON ..
-$ make
+$ cmake -DBUILD_ARAVIS=OFF ..
+$ make -j
 $ sudo make install
 ```
 
