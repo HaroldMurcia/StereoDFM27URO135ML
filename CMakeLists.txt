@@ -33,7 +33,6 @@ find_package(Threads REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-  cv_bridge
   # msg
   std_msgs
   sensor_msgs
