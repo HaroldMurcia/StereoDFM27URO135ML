@@ -24,10 +24,10 @@ stereo_dfm27uro135ml:
     whitebalance-red: 64
     Brightness: 16
     Brightness Reference: 60
-    Exposure Time (us): 33333
+    Exposure Time (us): 33300
     Exposure Auto: true
     Exposure Min: 100
-    Exposure Max: 33333
+    Exposure Max: 33300
     Gain: 48
     Gain (dB/100): 0
     Gain Auto: false
