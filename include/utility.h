@@ -15,8 +15,6 @@
 #include <unistd.h>
 #include "tcamprop.h"
 
-#include <yaml-cpp/yaml.h>
-
 #include <string>
 
 using namespace std;
@@ -24,12 +22,12 @@ using namespace std;
 class ParamServer{
 
 public:
-    
-    YAML::Node node = YAML::LoadFile("src/StereoDFM27URO135ML/config/params.yaml");
-    YAML::Node stereo_dfm27uro135ml = node["stereo_dfm27uro135ml"];
+    ros::NodeHandle nh;
 
-    YAML::Node properties = stereo_dfm27uro135ml["properties"];
-    YAML::Node formats = stereo_dfm27uro135ml["formats"];
+    string pwd_base_serials = "/stereo_dfm27uro135ml/serials/";
+    string pwd_base_formats = "/stereo_dfm27uro135ml/formats/";
+    string pwd_base_properties = "/stereo_dfm27uro135ml/properties/";
+    string pwd_base_ros_encoding_type = "/stereo_dfm27uro135ml/rosEncodingType/";
 
     string serial_cam0;
     string serial_cam1;
@@ -39,32 +37,67 @@ public:
     int32_t height;
 
     ParamServer(){
-        YAML::Node serials = stereo_dfm27uro135ml["serials"];
-        serial_cam0 = serials["cam0"].as<std::string>();
-        serial_cam1 = serials["cam1"].as<std::string>();
-        width = formats["width"].as<int32_t>();
-        height = formats["height"].as<int32_t>(); 
-        YAML::Node ros_encoding_type_tmp = node["rosEncodingType"];
-        string format = formats["format"].as<std::string>();
-        ros_encoding_type = ros_encoding_type_tmp[format].as<std::string>();
+        string pwd_serial_cam0;
+        pwd_serial_cam0.append(pwd_base_serials);
+        pwd_serial_cam0.append("cam0");
+        
+        string pwd_serial_cam1;
+        pwd_serial_cam1.append(pwd_base_serials);
+        pwd_serial_cam1.append("cam1");
+
+        nh.param<std::string>(pwd_serial_cam0, serial_cam0,"");
+        nh.param<std::string>(pwd_serial_cam1, serial_cam1,"");
+
+        string pwd_width;
+        pwd_width.append(pwd_base_formats);
+        pwd_width.append("width");
+
+        string pwd_height;
+        pwd_height.append(pwd_base_formats);
+        pwd_height.append("height");
+
+        nh.param<int32_t>(pwd_width, width, 640);
+        nh.param<int32_t>(pwd_height, height, 480);
+
+        string pwd_format;
+        pwd_format.append(pwd_base_formats);
+        pwd_format.append("format");
+
+        string format;
+        nh.param<std::string>(pwd_format, format, "GRAY8");
+
+        string pwd_ros_encoding_type;
+        pwd_ros_encoding_type.append(pwd_base_ros_encoding_type);
+        pwd_ros_encoding_type.append(format);
+        
+        nh.param<std::string>(pwd_ros_encoding_type, ros_encoding_type, "mono8");
     }
 
-    void set_property(GstElement *camera,const char *name,const char *type){
+    void set_property(GstElement *camera,const char *name_ros,const char *name,const char *type){
         GValue property = G_VALUE_INIT;
+        string pwd_property;
+        pwd_property.append(pwd_base_properties);
+        pwd_property.append(name_ros);
     
         if (strcmp(type, "int") == 0){
             g_value_init(&property,G_TYPE_INT);
-            g_value_set_int(&property,properties[name].as<int>());
+            int property_tmp;
+            nh.param<int>(pwd_property, property_tmp,1);
+            g_value_set_int(&property,property_tmp);
             tcam_prop_set_tcam_property(TCAM_PROP(camera), name, &property);
         }
         else if(strcmp(type, "boolean") == 0){   
             g_value_init(&property,G_TYPE_BOOLEAN);
-            g_value_set_boolean(&property,properties[name].as<bool>());
+            bool property_tmp;
+            nh.param<bool>(pwd_property, property_tmp,false);
+            g_value_set_boolean(&property,property_tmp);
             tcam_prop_set_tcam_property(TCAM_PROP(camera), name, &property);
         }
         else if(strcmp(type, "double") == 0){   
             g_value_init(&property,G_TYPE_DOUBLE);
-            g_value_set_double(&property,properties[name].as<double>());
+            double property_tmp;
+            nh.param<double>(pwd_property, property_tmp,1.0);
+            g_value_set_double(&property,property_tmp);
             tcam_prop_set_tcam_property(TCAM_PROP(camera), name, &property);
         }
         else {
@@ -74,18 +107,47 @@ public:
     }
 
     void set_format(GstElement *capsfilter){
-        string name_string = formats["name"].as<std::string>();
-        string format_string = formats["format"].as<std::string>();
+        string pwd_name;
+        pwd_name.append(pwd_base_formats);
+        pwd_name.append("mame");
+        
+        string pwd_format;
+        pwd_format.append(pwd_base_formats);
+        pwd_format.append("format");
 
-        const char* name_char = name_string.c_str();
-        const char* format_char = format_string.c_str();
+        string pwd_width;
+        pwd_width.append(pwd_base_formats);
+        pwd_width.append("width");
+
+        string pwd_height;
+        pwd_height.append(pwd_base_formats);
+        pwd_height.append("height");
+
+        string pwd_fps;
+        pwd_fps.append(pwd_base_formats);
+        pwd_fps.append("fps");
+        
+        string name;
+        string format;
+        int32_t width;
+        int32_t height;
+        int32_t fps;
+
+        nh.param<std::string>(pwd_name, name, "video/x-raw");
+        nh.param<std::string>(pwd_format, format, "GRAY8");
+        nh.param<int>(pwd_width, width, 640);
+        nh.param<int>(pwd_height, height, 480);
+        nh.param<int>(pwd_fps, fps, 10);
+
+        const char* name_char = name.c_str();
+        const char* format_char = format.c_str();
 
         GstStructure *structure = gst_structure_from_string(name_char, NULL);
         gst_structure_set(structure,
                         "format",G_TYPE_STRING,format_char,
-                        "width",G_TYPE_INT,formats["width"].as<int>(),
-                        "height",G_TYPE_INT,formats["height"].as<int>(),
-                        "framerate",GST_TYPE_FRACTION,formats["fps"].as<int>(), 1,
+                        "width",G_TYPE_INT,width,
+                        "height",G_TYPE_INT,height,
+                        "framerate",GST_TYPE_FRACTION,fps, 1,
                         NULL);
 
         GstCaps *caps = gst_caps_new_empty();
@@ -95,8 +157,5 @@ public:
         gst_caps_unref(caps);
     }
 
-    void print_params(){
-        cout << "\n" <<stereo_dfm27uro135ml << "\n" << endl;
-    }
 };
 #endif

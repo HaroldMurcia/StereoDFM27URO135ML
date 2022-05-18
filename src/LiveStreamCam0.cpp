@@ -27,6 +27,7 @@ gboolean block_until_playing(GstElement *pipeline)
 }
 
 int main (int argc, char *argv[]){
+    ros::init(argc, argv, "stereo_dfm27uro135ml");
 
     gst_debug_set_default_threshold(GST_LEVEL_WARNING);
     gst_init(&argc, &argv);
@@ -60,60 +61,58 @@ int main (int argc, char *argv[]){
         printf("Could not retrieve capsfilter from pipeline.");
         return 1;}
 
-    param_server.set_property(cam0,"Brightness","int");
-    param_server.set_property(cam0,"GPIn","int");
-    param_server.set_property(cam0,"GPOut","int");
-    param_server.set_property(cam0,"Gain (dB/100)","int");
-    param_server.set_property(cam0,"Offset Auto Center","boolean");
-    param_server.set_property(cam0,"Offset X","int");
-    param_server.set_property(cam0,"Offset Y","int");
-    param_server.set_property(cam0,"Override Scanning Mode","int");
-    param_server.set_property(cam0,"Strobe Enable","boolean");
-    param_server.set_property(cam0,"Strobe Exposure","boolean");
-    param_server.set_property(cam0,"Strobe Polarity","boolean");
-    param_server.set_property(cam0,"Trigger Delay (us)","int");
-    param_server.set_property(cam0,"Trigger Global Reset Release","boolean");
-    param_server.set_property(cam0,"Trigger Mode","boolean");
-    param_server.set_property(cam0,"camera-whitebalance","boolean");
-    param_server.set_property(cam0,"whitebalance-auto","boolean");
-    param_server.set_property(cam0,"whitebalance-blue","int");
-    param_server.set_property(cam0,"whitebalance-green","int");
-    param_server.set_property(cam0,"whitebalance-module-enabled","boolean");
-    param_server.set_property(cam0,"whitebalance-red","int");
+    param_server.set_property(cam0,"Brightness","Brightness","int");
+    param_server.set_property(cam0,"GPIn","GPIn","int");
+    param_server.set_property(cam0,"GPOut","GPOut","int");
+    param_server.set_property(cam0,"GainDB100","Gain (dB/100)","int");
+    param_server.set_property(cam0,"OffsetAutoCenter","Offset Auto Center","boolean");
+    param_server.set_property(cam0,"OffsetX","Offset X","int");
+    param_server.set_property(cam0,"OffsetY","Offset Y","int");
+    param_server.set_property(cam0,"OverrideScanningMode","Override Scanning Mode","int");
+    param_server.set_property(cam0,"StrobeEnable","Strobe Enable","boolean");
+    param_server.set_property(cam0,"StrobeExposure","Strobe Exposure","boolean");
+    param_server.set_property(cam0,"StrobePolarity","Strobe Polarity","boolean");
+    param_server.set_property(cam0,"TriggerDelayUs","Trigger Delay (us)","int");
+    param_server.set_property(cam0,"TriggerGlobalResetRelease","Trigger Global Reset Release","boolean");
+    param_server.set_property(cam0,"TriggerMode","Trigger Mode","boolean");
+    param_server.set_property(cam0,"cameraWhitebalance","camera-whitebalance","boolean");
+    param_server.set_property(cam0,"whitebalanceAuto","whitebalance-auto","boolean");
+    param_server.set_property(cam0,"whitebalanceBlue","whitebalance-blue","int");
+    param_server.set_property(cam0,"whitebalanceGreen","whitebalance-green","int");
+    param_server.set_property(cam0,"whitebalanceModuleEnabled","whitebalance-module-enabled","boolean");
+    param_server.set_property(cam0,"whitebalanceRed","whitebalance-red","int");
 
     param_server.set_format(capsfilter);
     gst_object_unref(capsfilter);
 
-    cout << "\n" << "LiveStreamCam0 :"<< endl;
-    param_server.print_params();
-
     gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
     if (!block_until_playing(pipeline))
-    {
-        printf("Unable to start pipeline. \n");
+    {   
+        cout << "\n" << "Unable to start pipeline."<< "\n"<< endl;
     }
 
-    param_server.set_property(cam0,"Brightness Reference","int");
+    param_server.set_property(cam0,"BrightnessReference","Brightness Reference","int");
+    param_server.set_property(cam0,"ExposureAuto","Exposure Auto","boolean");
+    param_server.set_property(cam0,"ExposureMin","Exposure Min","int");
+    param_server.set_property(cam0,"ExposureMax","Exposure Max","int");
+    param_server.set_property(cam0,"ExposureTimeUs","Exposure Time (us)","int");
+    param_server.set_property(cam0,"GainAuto","Gain Auto","boolean");
+    param_server.set_property(cam0,"GainMin","Gain Min","double");
+    param_server.set_property(cam0,"GainMax","Gain Max","double");
+    param_server.set_property(cam0,"Gain","Gain","int");
+    param_server.set_property(cam0,"ExposureROILeft","Exposure ROI Left","int");
+    param_server.set_property(cam0,"ExposureROIWidth","Exposure ROI Width","int");
+    param_server.set_property(cam0,"ExposureROITop","Exposure ROI Top","int");
+    param_server.set_property(cam0,"ExposureROIHeight","Exposure ROI Height","int");
 
-    param_server.set_property(cam0,"Exposure Auto","boolean");
-    param_server.set_property(cam0,"Exposure Min","int");
-    param_server.set_property(cam0,"Exposure Max","int");
-    param_server.set_property(cam0,"Exposure Time (us)","int");
-
-    param_server.set_property(cam0,"Gain Auto","boolean");
-    param_server.set_property(cam0,"Gain Min","double");
-    param_server.set_property(cam0,"Gain Max","double");
-    param_server.set_property(cam0,"Gain","int");
-
-    param_server.set_property(cam0,"Exposure ROI Left","int");
-    param_server.set_property(cam0,"Exposure ROI Width","int");
-    param_server.set_property(cam0,"Exposure ROI Top","int");
-    param_server.set_property(cam0,"Exposure ROI Height","int");
     gst_object_unref(cam0); 
+    
+    ROS_INFO_STREAM("\033[1;32m-> LiveStreamCam0.\033[0m");
+    ROS_INFO_STREAM("Press Ctrl-C to stop the stream.");
+    while (ros::ok()){
 
-    printf("Press enter to stop the stream.\n");
-    getchar();
+    };
 
     gst_element_set_state(pipeline, GST_STATE_NULL);
 

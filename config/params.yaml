@@ -6,37 +6,37 @@ stereo_dfm27uro135ml:
   properties:
     GPIn: 0
     GPOut: 0
-    Offset Auto Center: true
-    Offset X: 0
-    Offset Y: 0
-    Override Scanning Mode: 0
-    Strobe Enable: false
-    Strobe Exposure: false
-    Strobe Polarity: false
-    Trigger Delay (us): 0
-    Trigger Global Reset Release: false
-    Trigger Mode: false
-    camera-whitebalance: false
-    whitebalance-auto: true
-    whitebalance-blue: 64
-    whitebalance-green: 64
-    whitebalance-module-enabled: true
-    whitebalance-red: 64
+    OffsetAutoCenter: true
+    OffsetX: 0
+    OffsetY: 0
+    OverrideScanningMode: 0
+    StrobeEnable: false
+    StrobeExposure: false
+    StrobePolarity: false
+    TriggerDelayUs: 0
+    TriggerGlobalResetRelease: false
+    TriggerMode: false
+    cameraWhitebalance: false
+    whitebalanceAuto: true
+    whitebalanceBlue: 64
+    whitebalanceGreen: 64
+    whitebalanceModuleEnabled: true
+    whitebalanceRed: 64
     Brightness: 16
-    Brightness Reference: 60
-    Exposure Time (us): 33300
-    Exposure Auto: true
-    Exposure Min: 100
-    Exposure Max: 33300
+    BrightnessReference: 60
+    ExposureTimeUs: 33300
+    ExposureAuto: true
+    ExposureMin: 100
+    ExposureMax: 33300
     Gain: 48
-    Gain (dB/100): 0
-    Gain Auto: false
-    Gain Min: 48.0
-    Gain Max: 2047.0
-    Exposure ROI Left: 0
-    Exposure ROI Width: 1280
-    Exposure ROI Top: 0
-    Exposure ROI Height: 960
+    GainDB100: 0
+    GainAuto: false
+    GainMin: 48.0
+    GainMax: 2047.0
+    ExposureROILeft: 0
+    ExposureROIWidth: 1280
+    ExposureROITop: 0
+    ExposureROIHeight: 960
 
   formats:
     name: "video/x-raw"
@@ -45,13 +45,13 @@ stereo_dfm27uro135ml:
     height: 960
     fps: 30
 
-rosEncodingType:
-  grbg: "8UC3"
-  GRAY8: "mono8"
-  GRAY16_LE: "mono16"
-  RGB: "rgb8"
-  BGR: "bgr8"
-  RGBA: "rgba8"
-  ARGB: "8UC4"
-  BGRA: "bgra8"
-  ABGR: "8UC4"
+  rosEncodingType:
+    grbg: "8UC3"
+    GRAY8: "mono8"
+    GRAY16_LE: "mono16"
+    RGB: "rgb8"
+    BGR: "bgr8"
+    RGBA: "rgba8"
+    ARGB: "8UC4"
+    BGRA: "bgra8"
+    ABGR: "8UC4"

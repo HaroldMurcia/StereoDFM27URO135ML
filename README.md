@@ -24,12 +24,6 @@ Este repositorio consiste en el intento de desarrollo de un paquete de Ros que p
 
 ## 2. Instalación
 
-yaml-cpp:
-
-```console
-$ sudo apt-get install libyaml-cpp-dev
-```
-
 [TIS Camera](https://www.theimagingsource.com/documentation/tiscamera/tutorial.html):
 
 ```console
@@ -194,14 +188,14 @@ Para realizar cambios en las propiedades o en el formato de las cámaras, modifi
 
   ```console
   $ source devel/setup.bash
-  $ rosrun stereo_dfm27uro135ml LiveStreamCam0
+  $ roslaunch stereo_dfm27uro135ml LiveStreamCam0.launch
   ```
 
 - Prueba de vídeo camara 1:
 
   ```console
-    $ source devel/setup.bash
-    $ rosrun stereo_dfm27uro135ml LiveStreamCam1
+  $ source devel/setup.bash
+  $ roslaunch stereo_dfm27uro135ml LiveStreamCam1.launch
   ```
 
 - Publicar las imágenes en Ros con los tópico :
@@ -212,5 +206,5 @@ Para realizar cambios en las propiedades o en el formato de las cámaras, modifi
 
   ```console
   $ source devel/setup.bash
-  $ rosrun stereo_dfm27uro135ml StereoImages
+  $ roslaunch stereo_dfm27uro135ml StereoImages.launch
   ```

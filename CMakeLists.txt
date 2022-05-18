@@ -58,7 +58,6 @@ link_libraries(
   tiscamera_interface::tiscamera_interface
   Threads::Threads
   ${WITH_TONEMAPPING}
-  yaml-cpp
 )
 
 add_executable(ListDevices src/ListDevices.cpp)

@@ -86,77 +86,77 @@ public:
     }
 
     void setting_camera_before_PLAYING(){
-        this->param_server.set_property(this->cam0,"Brightness","int");
-        this->param_server.set_property(this->cam0,"GPIn","int");
-        this->param_server.set_property(this->cam0,"GPOut","int");
-        this->param_server.set_property(this->cam0,"Gain (dB/100)","int");
-        this->param_server.set_property(this->cam0,"Offset Auto Center","boolean");
-        this->param_server.set_property(this->cam0,"Offset X","int");
-        this->param_server.set_property(this->cam0,"Offset Y","int");
-        this->param_server.set_property(this->cam0,"Override Scanning Mode","int");
-        this->param_server.set_property(this->cam0,"Strobe Enable","boolean");
-        this->param_server.set_property(this->cam0,"Strobe Exposure","boolean");
-        this->param_server.set_property(this->cam0,"Strobe Polarity","boolean");
-        this->param_server.set_property(this->cam0,"Trigger Delay (us)","int");
-        this->param_server.set_property(this->cam0,"Trigger Global Reset Release","boolean");
-        this->param_server.set_property(this->cam0,"Trigger Mode","boolean");
-        this->param_server.set_property(this->cam0,"camera-whitebalance","boolean");
-        this->param_server.set_property(this->cam0,"whitebalance-auto","boolean");
-        this->param_server.set_property(this->cam0,"whitebalance-blue","int");
-        this->param_server.set_property(this->cam0,"whitebalance-green","int");
-        this->param_server.set_property(this->cam0,"whitebalance-module-enabled","boolean");
-        this->param_server.set_property(this->cam0,"whitebalance-red","int");
+        this->param_server.set_property(this->cam0,"Brightness","Brightness","int");
+        this->param_server.set_property(this->cam0,"GPIn","GPIn","int");
+        this->param_server.set_property(this->cam0,"GPOut","GPOut","int");
+        this->param_server.set_property(this->cam0,"GainDB100","Gain (dB/100)","int");
+        this->param_server.set_property(this->cam0,"OffsetAutoCenter","Offset Auto Center","boolean");
+        this->param_server.set_property(this->cam0,"OffsetX","Offset X","int");
+        this->param_server.set_property(this->cam0,"OffsetY","Offset Y","int");
+        this->param_server.set_property(this->cam0,"OverrideScanningMode","Override Scanning Mode","int");
+        this->param_server.set_property(this->cam0,"StrobeEnable","Strobe Enable","boolean");
+        this->param_server.set_property(this->cam0,"StrobeExposure","Strobe Exposure","boolean");
+        this->param_server.set_property(this->cam0,"StrobePolarity","Strobe Polarity","boolean");
+        this->param_server.set_property(this->cam0,"TriggerDelayUs","Trigger Delay (us)","int");
+        this->param_server.set_property(this->cam0,"TriggerGlobalResetRelease","Trigger Global Reset Release","boolean");
+        this->param_server.set_property(this->cam0,"TriggerMode","Trigger Mode","boolean");
+        this->param_server.set_property(this->cam0,"cameraWhitebalance","camera-whitebalance","boolean");
+        this->param_server.set_property(this->cam0,"whitebalanceAuto","whitebalance-auto","boolean");
+        this->param_server.set_property(this->cam0,"whitebalanceBlue","whitebalance-blue","int");
+        this->param_server.set_property(this->cam0,"whitebalanceGreen","whitebalance-green","int");
+        this->param_server.set_property(this->cam0,"whitebalanceModuleEnabled","whitebalance-module-enabled","boolean");
+        this->param_server.set_property(this->cam0,"whitebalanceRed","whitebalance-red","int");
 
-        this->param_server.set_property(this->cam1,"Brightness","int");
-        this->param_server.set_property(this->cam1,"GPIn","int");
-        this->param_server.set_property(this->cam1,"GPOut","int");
-        this->param_server.set_property(this->cam1,"Gain (dB/100)","int");
-        this->param_server.set_property(this->cam1,"Offset Auto Center","boolean");
-        this->param_server.set_property(this->cam1,"Offset X","int");
-        this->param_server.set_property(this->cam1,"Offset Y","int");
-        this->param_server.set_property(this->cam1,"Override Scanning Mode","int");
-        this->param_server.set_property(this->cam1,"Strobe Enable","boolean");
-        this->param_server.set_property(this->cam1,"Strobe Exposure","boolean");
-        this->param_server.set_property(this->cam1,"Strobe Polarity","boolean");
-        this->param_server.set_property(this->cam1,"Trigger Delay (us)","int");
-        this->param_server.set_property(this->cam1,"Trigger Global Reset Release","boolean");
-        this->param_server.set_property(this->cam1,"Trigger Mode","boolean");
-        this->param_server.set_property(this->cam1,"camera-whitebalance","boolean");
-        this->param_server.set_property(this->cam1,"whitebalance-auto","boolean");
-        this->param_server.set_property(this->cam1,"whitebalance-blue","int");
-        this->param_server.set_property(this->cam1,"whitebalance-green","int");
-        this->param_server.set_property(this->cam1,"whitebalance-module-enabled","boolean");
-        this->param_server.set_property(this->cam1,"whitebalance-red","int");
+        this->param_server.set_property(this->cam1,"Brightness","Brightness","int");
+        this->param_server.set_property(this->cam1,"GPIn","GPIn","int");
+        this->param_server.set_property(this->cam1,"GPOut","GPOut","int");
+        this->param_server.set_property(this->cam1,"GainDB100","Gain (dB/100)","int");
+        this->param_server.set_property(this->cam1,"OffsetAutoCenter","Offset Auto Center","boolean");
+        this->param_server.set_property(this->cam1,"OffsetX","Offset X","int");
+        this->param_server.set_property(this->cam1,"OffsetY","Offset Y","int");
+        this->param_server.set_property(this->cam1,"OverrideScanningMode","Override Scanning Mode","int");
+        this->param_server.set_property(this->cam1,"StrobeEnable","Strobe Enable","boolean");
+        this->param_server.set_property(this->cam1,"StrobeExposure","Strobe Exposure","boolean");
+        this->param_server.set_property(this->cam1,"StrobePolarity","Strobe Polarity","boolean");
+        this->param_server.set_property(this->cam1,"TriggerDelayUs","Trigger Delay (us)","int");
+        this->param_server.set_property(this->cam1,"TriggerGlobalResetRelease","Trigger Global Reset Release","boolean");
+        this->param_server.set_property(this->cam1,"TriggerMode","Trigger Mode","boolean");
+        this->param_server.set_property(this->cam1,"cameraWhitebalance","camera-whitebalance","boolean");
+        this->param_server.set_property(this->cam1,"whitebalanceAuto","whitebalance-auto","boolean");
+        this->param_server.set_property(this->cam1,"whitebalanceBlue","whitebalance-blue","int");
+        this->param_server.set_property(this->cam1,"whitebalanceGreen","whitebalance-green","int");
+        this->param_server.set_property(this->cam1,"whitebalanceModuleEnabled","whitebalance-module-enabled","boolean");
+        this->param_server.set_property(this->cam1,"whitebalanceRed","whitebalance-red","int");
     }
 
     void setting_camera_during_PLAYING(){
-        this->param_server.set_property(this->cam0,"Brightness Reference","int");
-        this->param_server.set_property(this->cam0,"Exposure Auto","boolean");
-        this->param_server.set_property(this->cam0,"Exposure Min","int");
-        this->param_server.set_property(this->cam0,"Exposure Max","int");
-        this->param_server.set_property(this->cam0,"Exposure Time (us)","int");
-        this->param_server.set_property(this->cam0,"Gain Auto","boolean");
-        this->param_server.set_property(this->cam0,"Gain Min","double");
-        this->param_server.set_property(this->cam0,"Gain Max","double");
-        this->param_server.set_property(this->cam0,"Gain","int");
-        this->param_server.set_property(this->cam0,"Exposure ROI Left","int");
-        this->param_server.set_property(this->cam0,"Exposure ROI Width","int");
-        this->param_server.set_property(this->cam0,"Exposure ROI Top","int");
-        this->param_server.set_property(this->cam0,"Exposure ROI Height","int");
+        this->param_server.set_property(this->cam0,"BrightnessReference","Brightness Reference","int");
+        this->param_server.set_property(this->cam0,"ExposureAuto","Exposure Auto","boolean");
+        this->param_server.set_property(this->cam0,"ExposureMin","Exposure Min","int");
+        this->param_server.set_property(this->cam0,"ExposureMax","Exposure Max","int");
+        this->param_server.set_property(this->cam0,"ExposureTimeUs","Exposure Time (us)","int");
+        this->param_server.set_property(this->cam0,"GainAuto","Gain Auto","boolean");
+        this->param_server.set_property(this->cam0,"GainMin","Gain Min","double");
+        this->param_server.set_property(this->cam0,"GainMax","Gain Max","double");
+        this->param_server.set_property(this->cam0,"Gain","Gain","int");
+        this->param_server.set_property(this->cam0,"ExposureROILeft","Exposure ROI Left","int");
+        this->param_server.set_property(this->cam0,"ExposureROIWidth","Exposure ROI Width","int");
+        this->param_server.set_property(this->cam0,"ExposureROITop","Exposure ROI Top","int");
+        this->param_server.set_property(this->cam0,"ExposureROIHeight","Exposure ROI Height","int");
 
-        this->param_server.set_property(this->cam1,"Brightness Reference","int");
-        this->param_server.set_property(this->cam1,"Exposure Auto","boolean");
-        this->param_server.set_property(this->cam1,"Exposure Min","int");
-        this->param_server.set_property(this->cam1,"Exposure Max","int");
-        this->param_server.set_property(this->cam1,"Exposure Time (us)","int");
-        this->param_server.set_property(this->cam1,"Gain Auto","boolean");
-        this->param_server.set_property(this->cam1,"Gain Min","double");
-        this->param_server.set_property(this->cam1,"Gain Max","double");
-        this->param_server.set_property(this->cam1,"Gain","int");
-        this->param_server.set_property(this->cam1,"Exposure ROI Left","int");
-        this->param_server.set_property(this->cam1,"Exposure ROI Width","int");
-        this->param_server.set_property(this->cam1,"Exposure ROI Top","int");
-        this->param_server.set_property(this->cam1,"Exposure ROI Height","int");
+        this->param_server.set_property(this->cam1,"BrightnessReference","Brightness Reference","int");
+        this->param_server.set_property(this->cam1,"ExposureAuto","Exposure Auto","boolean");
+        this->param_server.set_property(this->cam1,"ExposureMin","Exposure Min","int");
+        this->param_server.set_property(this->cam1,"ExposureMax","Exposure Max","int");
+        this->param_server.set_property(this->cam1,"ExposureTimeUs","Exposure Time (us)","int");
+        this->param_server.set_property(this->cam1,"GainAuto","Gain Auto","boolean");
+        this->param_server.set_property(this->cam1,"GainMin","Gain Min","double");
+        this->param_server.set_property(this->cam1,"GainMax","Gain Max","double");
+        this->param_server.set_property(this->cam1,"Gain","Gain","int");
+        this->param_server.set_property(this->cam1,"ExposureROILeft","Exposure ROI Left","int");
+        this->param_server.set_property(this->cam1,"ExposureROIWidth","Exposure ROI Width","int");
+        this->param_server.set_property(this->cam1,"ExposureROITop","Exposure ROI Top","int");
+        this->param_server.set_property(this->cam1,"ExposureROIHeight","Exposure ROI Height","int");
 
         gst_object_unref(this->cam0); 
         gst_object_unref(this->cam1); 
@@ -221,6 +221,7 @@ static GstFlowReturn publish_img0(GstElement* appsink,StereoDFM* stereo_DFM){
     img.width = stereo_DFM->param_server.width;
     img.encoding = stereo_DFM->param_server.ros_encoding_type;
     img.data.assign(info.data, info.data+info.size);
+    img.step = stereo_DFM->param_server.width;
     img.header.stamp = ros::Time::now();
     stereo_DFM->pub_img_cam0.publish(img);
     gst_buffer_unmap(buffer, &info);
@@ -240,6 +241,7 @@ static GstFlowReturn publish_img1(GstElement* appsink,StereoDFM* stereo_DFM){
     img.width = stereo_DFM->param_server.width;
     img.encoding = stereo_DFM->param_server.ros_encoding_type;
     img.data.assign(info.data, info.data+info.size);
+    img.step = stereo_DFM->param_server.width;
     img.header.stamp = ros::Time::now();
     stereo_DFM->pub_img_cam1.publish(img);
     gst_buffer_unmap(buffer, &info);
@@ -249,7 +251,6 @@ static GstFlowReturn publish_img1(GstElement* appsink,StereoDFM* stereo_DFM){
 
 int main (int argc, char *argv[]){
     ros::init(argc, argv, "stereo_dfm27uro135ml");
-    cout << "\n" << "stereo_dfm27uro135ml :"<< endl;
 
     gst_debug_set_default_threshold(GST_LEVEL_WARNING);
     gst_init(&argc, &argv);
@@ -265,25 +266,27 @@ int main (int argc, char *argv[]){
 
     gst_object_unref(stereo_DFM.appsink0);
     gst_object_unref(stereo_DFM.appsink1);
-    
-    stereo_DFM.param_server.print_params();
 
     gst_element_set_state(stereo_DFM.pipeline0, GST_STATE_PLAYING);
     gst_element_set_state(stereo_DFM.pipeline1, GST_STATE_PLAYING);
     
     if (!block_until_playing(stereo_DFM.pipeline0)){
-        printf("Unable to start pipeline0. \n");
+        ROS_INFO_STREAM("Unable to start pipeline1.");
     }
 
     if (!block_until_playing(stereo_DFM.pipeline1)){
-        printf("Unable to start pipelin1. \n");
+        ROS_INFO_STREAM("Unable to start pipeline1.");
     }
 
     stereo_DFM.setting_camera_during_PLAYING();
-    
-    ROS_INFO_STREAM("Press enter to stop.");
-    getchar();
 
+    ROS_INFO_STREAM("\033[1;32m-> StereoImages.\033[0m");
+    ROS_INFO_STREAM("Press Ctrl-C to stop.");
+
+    while (ros::ok()){
+
+    }
+    
     gst_element_set_state(stereo_DFM.pipeline0, GST_STATE_NULL);
     gst_element_set_state(stereo_DFM.pipeline1, GST_STATE_NULL);
 
