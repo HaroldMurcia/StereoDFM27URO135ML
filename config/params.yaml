@@ -40,10 +40,10 @@ stereo_dfm27uro135ml:
 
   formats:
     name: "video/x-raw"
-    format: "GRAY8"
-    width: 1280
-    height: 960
-    fps: 30
+    format: "RGB"
+    width: 640
+    height: 480
+    fps: 10
 
   rosEncodingType:
     grbg: "8UC3"
